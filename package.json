@@ -1,0 +1,22 @@
+{
+  "name": "docs",
+  "version": "1.0.0",
+  "description": "",
+  "main": "index.js",
+  "scripts": {
+    "start": "tsx --env-file=.env src/server.ts",
+    "start:dev": "tsx watch --env-file=.env src/server.ts",
+    "dist": "tsup src",
+    "start:dist": "npm run dist && --env-file=.env node dist/server.ts"
+  },
+  "keywords": [],
+  "author": "",
+  "license": "ISC",
+  "type": "module",
+  "devDependencies": {
+    "@types/node": "^25.9.1",
+    "tsup": "^8.5.1",
+    "tsx": "^4.22.3",
+    "typescript": "^6.0.2"
+  }
+}
