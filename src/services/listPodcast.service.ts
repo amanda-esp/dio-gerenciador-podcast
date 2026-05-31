@@ -1,7 +1,20 @@
-import type { PodcastInterface } from "../repository/podcast-interface";
+import type { PodcastDTO } from "../model/podcast-dto";
 import { repoPodcast } from "../repository/podcast-repository";
+import { StatusCode } from "../utils/server-status-response";
 
-export const listarEpisodios = async ():Promise<PodcastInterface[]> => {
+export const listarEpisodios = async () => {
+
+    let responseFormat: PodcastDTO = {
+        statusCode: 0,
+        body: []
+    }
+
     const data = await repoPodcast()
-    return data;
+    
+    responseFormat = {
+        statusCode: (data.length !== 0 ? StatusCode.OK : StatusCode.NoContent),
+        body: data
+    }
+    
+    return responseFormat;
 }

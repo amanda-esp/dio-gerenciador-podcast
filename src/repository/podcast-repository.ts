@@ -1,6 +1,6 @@
 import fs from "fs" //biblioteca com funções para manipulação de arquivos
 import path from "path"
-import type { PodcastInterface } from "./podcast-interface";
+import type { PodcastInterface } from "../model/podcast-interface";
 
 const pathData = path.join(__dirname, "../repository/podcasts.json")
 
