@@ -1,16 +1,23 @@
-import {IncomingMessage, ServerResponse} from 'http'
+import {IncomingMessage, request, ServerResponse} from 'http'
+import { listarEpisodios } from '../services/listPodcast.service';
+import { filterEpisodes } from '../services/filterEpisodes-service';
 
 export const getListEpisodes = async (request: IncomingMessage, response: ServerResponse) => {
+    
+    const todosEps = await listarEpisodios();
+    
     response.writeHead(200, {"content-type": "application/json"});
     response.end(
-        JSON.stringify(
-            {
-                "podcastName": "flow",
-                "epsodeName": "CBUM - Flow #319",
-                "cover": "https://www.blip.ai/blog/wp-content/uploads/2018/11/1-1024x310.png",
-                "link": "https://www.blip.ai/blog/wp-content/uploads/2018/11/1-1024x310.png",
-                "categories" : ["Saude", "Fisiculturismo"]
-            },
-        )
+        JSON.stringify(todosEps),
     );
+}
+
+export const getFilterEspisodes = async (request: IncomingMessage, response: ServerResponse) => {
+    const epsFiltrados = await filterEpisodes("flow");
+
+    response.writeHead(200, {"content-type": "application/json"});
+    response.end(
+        JSON.stringify(epsFiltrados),
+    );
+
 }
