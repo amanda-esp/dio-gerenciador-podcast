@@ -9,8 +9,10 @@ const server = http.createServer(
         if(request.method === "GET" && request.url === "/api/list")
             await getListEpisodes(request, response);
 
-        if(request.method === "GET" && request.url === "/api/filter")
+        if(request.method === "GET" && request.url === "/api/filter/:name"){
+            
             await getFilterEspisodes(request, response)
+        }
     }
 );
 
